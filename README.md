@@ -20,6 +20,9 @@ or suppress it. This example makes those relationships visible in the graph.
 
 ## What you need
 
+**GET SYNTHETIC NEURONS:** [Prima-Lux Dev Kit with capacity for up to 10,000 synthetic neurons](https://artificialbrains.ai)
+
+
 | Requirement | Details |
 | --- | --- |
 | Computer | Ubuntu 24.04 x86_64, graphical desktop and OpenGL |
