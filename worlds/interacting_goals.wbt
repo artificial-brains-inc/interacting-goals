@@ -1,0 +1,834 @@
+#VRML_SIM R2025a utf8
+# FUZZY6 v1.0: six sensory OOS paths -> six distributed bank channels -> motor readout.
+WorldInfo {
+  info [
+    "A/B/AB obstacle precision world: same moving-light precision setup plus static dispersed obstacles around the robot."
+    "The light beam is intentionally broad enough to illuminate one whole front side of the robot, rather than a single photosensor point."
+    "The actual SpotLight is aimed in 3D at the nearer front-side photosensor and the visible wedge reflects the optical spread."
+    "When heading and approach become stably aligned, the active lure switches off and reappears on the opposite side, forcing a new turn."
+  ]
+  title "A/B/AB obstacle precision test — moving light + dispersed objects"
+  basicTimeStep 16
+  contactProperties [
+    ContactProperties { material1 "course_floor" material2 "wheel" coulombFriction [1.2] bounce 0 }
+    ContactProperties { material1 "course_floor" material2 "robot_body" coulombFriction [0.08] bounce 0 }
+    ContactProperties { material1 "wall" material2 "robot_body" coulombFriction [0.25] bounce 0 }
+    ContactProperties { material1 "obstacle" material2 "robot_body" coulombFriction [0.30] bounce 0 }
+  ]
+}
+Viewpoint { fieldOfView 0.70 orientation -0.5773502692 0.5773502692 0.5773502692 2.0943951024 position 0 0 2.15 near 0.01 }
+Background { skyColor [0.0015 0.0020 0.0030] }
+DirectionalLight { ambientIntensity 0.0005 direction -0.4 0.2 -1 intensity 0.002 castShadows FALSE }
+Solid { translation 0 0 -0.015 children [ Shape { appearance PBRAppearance { baseColor 0.024 0.028 0.034 emissiveColor 0.026 0.030 0.036 roughness 0.95 metalness 0 } geometry Box { size 2.35 1.80 0.03 } } ] name "course_floor" contactMaterial "course_floor" boundingObject Box { size 2.35 1.80 0.03 } }
+Solid { translation 0 -0.885 0.05 children [ Shape { appearance PBRAppearance { baseColor 0.13 0.10 0.025 emissiveColor 0.018 0.012 0.002 roughness 0.85 } geometry Box { size 2.35 0.025 0.10 } } ] name "south curb" contactMaterial "wall" boundingObject Box { size 2.35 0.025 0.10 } }
+Solid { translation 0 0.885 0.05 children [ Shape { appearance PBRAppearance { baseColor 0.13 0.10 0.025 emissiveColor 0.018 0.012 0.002 roughness 0.85 } geometry Box { size 2.35 0.025 0.10 } } ] name "north curb" contactMaterial "wall" boundingObject Box { size 2.35 0.025 0.10 } }
+Solid { translation -1.160 0 0.05 children [ Shape { appearance PBRAppearance { baseColor 0.13 0.10 0.025 emissiveColor 0.018 0.012 0.002 roughness 0.85 } geometry Box { size 0.025 1.80 0.10 } } ] name "west curb" contactMaterial "wall" boundingObject Box { size 0.025 1.80 0.10 } }
+Solid { translation 1.160 0 0.05 children [ Shape { appearance PBRAppearance { baseColor 0.13 0.10 0.025 emissiveColor 0.018 0.012 0.002 roughness 0.85 } geometry Box { size 0.025 1.80 0.10 } } ] name "east curb" contactMaterial "wall" boundingObject Box { size 0.025 1.80 0.10 } }
+
+# Visual-only wall texture. These contain NO Light nodes.
+# Subtle neutral dash pattern gives the camera rotational/parallax texture without becoming a scene focal point.
+# All four walls use the same muted warm-gray pattern; only geometry motion in the camera is meant to be noticeable.
+# NORTH: quiet repeated dashes
+Pose { translation -0.90 0.865 0.068 children [ Shape { appearance PBRAppearance { baseColor 0.24 0.23 0.20 emissiveColor 0.012 0.011 0.009 roughness 0.92 metalness 0 } geometry Box { size 0.055 0.014 0.050 } } ] }
+Pose { translation -0.60 0.865 0.068 children [ Shape { appearance PBRAppearance { baseColor 0.18 0.175 0.155 emissiveColor 0.008 0.0075 0.0065 roughness 0.92 metalness 0 } geometry Box { size 0.055 0.014 0.050 } } ] }
+Pose { translation -0.30 0.865 0.068 children [ Shape { appearance PBRAppearance { baseColor 0.24 0.23 0.20 emissiveColor 0.012 0.011 0.009 roughness 0.92 metalness 0 } geometry Box { size 0.055 0.014 0.050 } } ] }
+Pose { translation 0.00 0.865 0.068 children [ Shape { appearance PBRAppearance { baseColor 0.18 0.175 0.155 emissiveColor 0.008 0.0075 0.0065 roughness 0.92 metalness 0 } geometry Box { size 0.055 0.014 0.050 } } ] }
+Pose { translation 0.30 0.865 0.068 children [ Shape { appearance PBRAppearance { baseColor 0.24 0.23 0.20 emissiveColor 0.012 0.011 0.009 roughness 0.92 metalness 0 } geometry Box { size 0.055 0.014 0.050 } } ] }
+Pose { translation 0.60 0.865 0.068 children [ Shape { appearance PBRAppearance { baseColor 0.18 0.175 0.155 emissiveColor 0.008 0.0075 0.0065 roughness 0.92 metalness 0 } geometry Box { size 0.055 0.014 0.050 } } ] }
+Pose { translation 0.90 0.865 0.068 children [ Shape { appearance PBRAppearance { baseColor 0.24 0.23 0.20 emissiveColor 0.012 0.011 0.009 roughness 0.92 metalness 0 } geometry Box { size 0.055 0.014 0.050 } } ] }
+# SOUTH: quiet repeated dashes
+Pose { translation -0.90 -0.865 0.068 children [ Shape { appearance PBRAppearance { baseColor 0.24 0.23 0.20 emissiveColor 0.012 0.011 0.009 roughness 0.92 metalness 0 } geometry Box { size 0.055 0.014 0.050 } } ] }
+Pose { translation -0.60 -0.865 0.068 children [ Shape { appearance PBRAppearance { baseColor 0.18 0.175 0.155 emissiveColor 0.008 0.0075 0.0065 roughness 0.92 metalness 0 } geometry Box { size 0.055 0.014 0.050 } } ] }
+Pose { translation -0.30 -0.865 0.068 children [ Shape { appearance PBRAppearance { baseColor 0.24 0.23 0.20 emissiveColor 0.012 0.011 0.009 roughness 0.92 metalness 0 } geometry Box { size 0.055 0.014 0.050 } } ] }
+Pose { translation 0.00 -0.865 0.068 children [ Shape { appearance PBRAppearance { baseColor 0.18 0.175 0.155 emissiveColor 0.008 0.0075 0.0065 roughness 0.92 metalness 0 } geometry Box { size 0.055 0.014 0.050 } } ] }
+Pose { translation 0.30 -0.865 0.068 children [ Shape { appearance PBRAppearance { baseColor 0.24 0.23 0.20 emissiveColor 0.012 0.011 0.009 roughness 0.92 metalness 0 } geometry Box { size 0.055 0.014 0.050 } } ] }
+Pose { translation 0.60 -0.865 0.068 children [ Shape { appearance PBRAppearance { baseColor 0.18 0.175 0.155 emissiveColor 0.008 0.0075 0.0065 roughness 0.92 metalness 0 } geometry Box { size 0.055 0.014 0.050 } } ] }
+Pose { translation 0.90 -0.865 0.068 children [ Shape { appearance PBRAppearance { baseColor 0.24 0.23 0.20 emissiveColor 0.012 0.011 0.009 roughness 0.92 metalness 0 } geometry Box { size 0.055 0.014 0.050 } } ] }
+# EAST: quiet repeated dashes
+Pose { translation 1.145 -0.66 0.068 children [ Shape { appearance PBRAppearance { baseColor 0.24 0.23 0.20 emissiveColor 0.012 0.011 0.009 roughness 0.92 metalness 0 } geometry Box { size 0.014 0.055 0.050 } } ] }
+Pose { translation 1.145 -0.44 0.068 children [ Shape { appearance PBRAppearance { baseColor 0.18 0.175 0.155 emissiveColor 0.008 0.0075 0.0065 roughness 0.92 metalness 0 } geometry Box { size 0.014 0.055 0.050 } } ] }
+Pose { translation 1.145 -0.22 0.068 children [ Shape { appearance PBRAppearance { baseColor 0.24 0.23 0.20 emissiveColor 0.012 0.011 0.009 roughness 0.92 metalness 0 } geometry Box { size 0.014 0.055 0.050 } } ] }
+Pose { translation 1.145 0.00 0.068 children [ Shape { appearance PBRAppearance { baseColor 0.18 0.175 0.155 emissiveColor 0.008 0.0075 0.0065 roughness 0.92 metalness 0 } geometry Box { size 0.014 0.055 0.050 } } ] }
+Pose { translation 1.145 0.22 0.068 children [ Shape { appearance PBRAppearance { baseColor 0.24 0.23 0.20 emissiveColor 0.012 0.011 0.009 roughness 0.92 metalness 0 } geometry Box { size 0.014 0.055 0.050 } } ] }
+Pose { translation 1.145 0.44 0.068 children [ Shape { appearance PBRAppearance { baseColor 0.18 0.175 0.155 emissiveColor 0.008 0.0075 0.0065 roughness 0.92 metalness 0 } geometry Box { size 0.014 0.055 0.050 } } ] }
+Pose { translation 1.145 0.66 0.068 children [ Shape { appearance PBRAppearance { baseColor 0.24 0.23 0.20 emissiveColor 0.012 0.011 0.009 roughness 0.92 metalness 0 } geometry Box { size 0.014 0.055 0.050 } } ] }
+# WEST: quiet repeated dashes
+Pose { translation -1.145 -0.66 0.068 children [ Shape { appearance PBRAppearance { baseColor 0.24 0.23 0.20 emissiveColor 0.012 0.011 0.009 roughness 0.92 metalness 0 } geometry Box { size 0.014 0.055 0.050 } } ] }
+Pose { translation -1.145 -0.44 0.068 children [ Shape { appearance PBRAppearance { baseColor 0.18 0.175 0.155 emissiveColor 0.008 0.0075 0.0065 roughness 0.92 metalness 0 } geometry Box { size 0.014 0.055 0.050 } } ] }
+Pose { translation -1.145 -0.22 0.068 children [ Shape { appearance PBRAppearance { baseColor 0.24 0.23 0.20 emissiveColor 0.012 0.011 0.009 roughness 0.92 metalness 0 } geometry Box { size 0.014 0.055 0.050 } } ] }
+Pose { translation -1.145 0.00 0.068 children [ Shape { appearance PBRAppearance { baseColor 0.18 0.175 0.155 emissiveColor 0.008 0.0075 0.0065 roughness 0.92 metalness 0 } geometry Box { size 0.014 0.055 0.050 } } ] }
+Pose { translation -1.145 0.22 0.068 children [ Shape { appearance PBRAppearance { baseColor 0.24 0.23 0.20 emissiveColor 0.012 0.011 0.009 roughness 0.92 metalness 0 } geometry Box { size 0.014 0.055 0.050 } } ] }
+Pose { translation -1.145 0.44 0.068 children [ Shape { appearance PBRAppearance { baseColor 0.18 0.175 0.155 emissiveColor 0.008 0.0075 0.0065 roughness 0.92 metalness 0 } geometry Box { size 0.014 0.055 0.050 } } ] }
+Pose { translation -1.145 0.66 0.068 children [ Shape { appearance PBRAppearance { baseColor 0.24 0.23 0.20 emissiveColor 0.012 0.011 0.009 roughness 0.92 metalness 0 } geometry Box { size 0.014 0.055 0.050 } } ] }
+
+
+# -----------------------------------------------------------------------------
+# Static dispersed obstacle field for Primitive A / AB priority testing.
+# The start zone remains clear; the nearest object is ~0.27 m from the robot.
+# Objects are deliberately matte/non-emissive so they do not become light sources.
+# Primitive B ignores proximity, Primitive A ignores light, AB receives both.
+# -----------------------------------------------------------------------------
+Solid {
+  translation 0.300 0.130 0.060
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.340 0.390 0.420
+        emissiveColor 0 0 0
+        roughness 0.96
+        metalness 0
+      }
+      geometry Box { size 0.105 0.085 0.120 }
+    }
+  ]
+  name "obstacle_01"
+  contactMaterial "obstacle"
+  boundingObject Box { size 0.105 0.085 0.120 }
+}
+Solid {
+  translation 0.470 -0.190 0.065
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.380 0.330 0.280
+        emissiveColor 0 0 0
+        roughness 0.96
+        metalness 0
+      }
+      geometry Cylinder { height 0.130 radius 0.055 subdivision 24 }
+    }
+  ]
+  name "obstacle_02"
+  contactMaterial "obstacle"
+  boundingObject Cylinder { height 0.130 radius 0.055 subdivision 16 }
+}
+Solid {
+  translation 0.180 -0.400 0.055
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.300 0.370 0.340
+        emissiveColor 0 0 0
+        roughness 0.96
+        metalness 0
+      }
+      geometry Box { size 0.115 0.090 0.110 }
+    }
+  ]
+  name "obstacle_03"
+  contactMaterial "obstacle"
+  boundingObject Box { size 0.115 0.090 0.110 }
+}
+Solid {
+  translation -0.200 -0.310 0.060
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.360 0.300 0.360
+        emissiveColor 0 0 0
+        roughness 0.96
+        metalness 0
+      }
+      geometry Cylinder { height 0.120 radius 0.052 subdivision 24 }
+    }
+  ]
+  name "obstacle_04"
+  contactMaterial "obstacle"
+  boundingObject Cylinder { height 0.120 radius 0.052 subdivision 16 }
+}
+Solid {
+  translation -0.430 -0.080 0.065
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.310 0.340 0.420
+        emissiveColor 0 0 0
+        roughness 0.96
+        metalness 0
+      }
+      geometry Box { size 0.090 0.120 0.130 }
+    }
+  ]
+  name "obstacle_05"
+  contactMaterial "obstacle"
+  boundingObject Box { size 0.090 0.120 0.130 }
+}
+Solid {
+  translation -0.360 0.310 0.055
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.390 0.360 0.290
+        emissiveColor 0 0 0
+        roughness 0.96
+        metalness 0
+      }
+      geometry Cylinder { height 0.110 radius 0.058 subdivision 24 }
+    }
+  ]
+  name "obstacle_06"
+  contactMaterial "obstacle"
+  boundingObject Cylinder { height 0.110 radius 0.058 subdivision 16 }
+}
+Solid {
+  translation -0.060 0.490 0.060
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.290 0.380 0.400
+        emissiveColor 0 0 0
+        roughness 0.96
+        metalness 0
+      }
+      geometry Box { size 0.125 0.080 0.120 }
+    }
+  ]
+  name "obstacle_07"
+  contactMaterial "obstacle"
+  boundingObject Box { size 0.125 0.080 0.120 }
+}
+Solid {
+  translation 0.340 0.480 0.065
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.400 0.310 0.280
+        emissiveColor 0 0 0
+        roughness 0.96
+        metalness 0
+      }
+      geometry Cylinder { height 0.130 radius 0.050 subdivision 24 }
+    }
+  ]
+  name "obstacle_08"
+  contactMaterial "obstacle"
+  boundingObject Cylinder { height 0.130 radius 0.050 subdivision 16 }
+}
+Solid {
+  translation 0.630 0.190 0.060
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.310 0.400 0.340
+        emissiveColor 0 0 0
+        roughness 0.96
+        metalness 0
+      }
+      geometry Box { size 0.105 0.105 0.120 }
+    }
+  ]
+  name "obstacle_09"
+  contactMaterial "obstacle"
+  boundingObject Box { size 0.105 0.105 0.120 }
+}
+Solid {
+  translation 0.720 -0.360 0.060
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.370 0.330 0.410
+        emissiveColor 0 0 0
+        roughness 0.96
+        metalness 0
+      }
+      geometry Cylinder { height 0.120 radius 0.055 subdivision 24 }
+    }
+  ]
+  name "obstacle_10"
+  contactMaterial "obstacle"
+  boundingObject Cylinder { height 0.120 radius 0.055 subdivision 16 }
+}
+Solid {
+  translation 0.040 -0.650 0.055
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.400 0.370 0.300
+        emissiveColor 0 0 0
+        roughness 0.96
+        metalness 0
+      }
+      geometry Box { size 0.130 0.075 0.110 }
+    }
+  ]
+  name "obstacle_11"
+  contactMaterial "obstacle"
+  boundingObject Box { size 0.130 0.075 0.110 }
+}
+Solid {
+  translation -0.470 -0.560 0.065
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.300 0.390 0.410
+        emissiveColor 0 0 0
+        roughness 0.96
+        metalness 0
+      }
+      geometry Cylinder { height 0.130 radius 0.052 subdivision 24 }
+    }
+  ]
+  name "obstacle_12"
+  contactMaterial "obstacle"
+  boundingObject Cylinder { height 0.130 radius 0.052 subdivision 16 }
+}
+Solid {
+  translation -0.720 0.200 0.060
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.390 0.310 0.330
+        emissiveColor 0 0 0
+        roughness 0.96
+        metalness 0
+      }
+      geometry Box { size 0.100 0.120 0.120 }
+    }
+  ]
+  name "obstacle_13"
+  contactMaterial "obstacle"
+  boundingObject Box { size 0.100 0.120 0.120 }
+}
+Solid {
+  translation -0.640 0.570 0.060
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.320 0.400 0.310
+        emissiveColor 0 0 0
+        roughness 0.96
+        metalness 0
+      }
+      geometry Cylinder { height 0.120 radius 0.055 subdivision 24 }
+    }
+  ]
+  name "obstacle_14"
+  contactMaterial "obstacle"
+  boundingObject Cylinder { height 0.120 radius 0.055 subdivision 16 }
+}
+Solid {
+  translation 0.620 0.600 0.055
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.350 0.350 0.420
+        emissiveColor 0 0 0
+        roughness 0.96
+        metalness 0
+      }
+      geometry Box { size 0.115 0.085 0.110 }
+    }
+  ]
+  name "obstacle_15"
+  contactMaterial "obstacle"
+  boundingObject Box { size 0.115 0.085 0.110 }
+}
+
+DEF EPUCK_ROBOT Robot {
+  translation 0 0 0.031
+  rotation 0 0 1 0
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          ambientIntensity 0.4
+          diffuseColor 0.78 0.08 0.1
+          shininess 0.25
+          specularColor 0.25 0.25 0.25
+        }
+      }
+      geometry Cylinder {
+        height 0.05
+        radius 0.0355
+      }
+    }
+    Pose {
+      translation 0 0 0.027
+      children [
+        Shape {
+          appearance Appearance {
+            material Material {
+              diffuseColor 0.04 0.04 0.05
+            }
+          }
+          geometry Cylinder {
+            height 0.004
+            radius 0.029
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0.02 0 0.03
+      children [
+        Shape {
+          appearance Appearance {
+            material Material {
+              diffuseColor 0.95 0.95 0.95
+            }
+          }
+          geometry Box {
+            size 0.025 0.008 0.004
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 6.642282578316182e-14
+        axis 0 1 0
+        anchor 0 0.033 -0.01
+      }
+      device [
+        RotationalMotor {
+          name "left wheel motor"
+          maxVelocity 8
+          maxTorque 0.025
+        }
+      ]
+      endPoint Solid {
+        translation 0 0.033 -0.01
+        rotation 1 3.1810168567530814e-14 -3.099830960131819e-14 1.5707963267902327
+        children [
+          DEF EPUCK_WHEEL Shape {
+            appearance Appearance {
+              material Material {
+                diffuseColor 0.02 0.02 0.02
+              }
+            }
+            geometry Cylinder {
+              height 0.005
+              radius 0.021
+              subdivision 24
+            }
+          }
+        ]
+        name "left wheel"
+        contactMaterial "wheel"
+        boundingObject USE EPUCK_WHEEL
+        physics Physics {
+          density -1
+          mass 0.01
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 6.824010404906401e-14
+        axis 0 1 0
+        anchor 0 -0.033 -0.01
+      }
+      device [
+        RotationalMotor {
+          name "right wheel motor"
+          maxVelocity 8
+          maxTorque 0.025
+        }
+      ]
+      endPoint Solid {
+        translation 0 -0.033 -0.01
+        rotation 1 3.3519124505007495e-14 -3.271137953727838e-14 1.5707963267902323
+        children [
+          USE EPUCK_WHEEL
+        ]
+        name "right wheel"
+        contactMaterial "wheel"
+        boundingObject USE EPUCK_WHEEL
+        physics Physics {
+          density -1
+          mass 0.01
+        }
+      }
+    }
+    Pose {
+      translation 0.031 0 0.011
+      children [
+        Shape {
+          appearance Appearance {
+            material Material {
+              diffuseColor 0.02 0.02 0.02
+            }
+          }
+          geometry Box {
+            size 0.012 0.02 0.016
+          }
+        }
+      ]
+    }
+    Camera {
+      translation 0.034 0 0.012
+      fieldOfView 1.05
+      width 160
+      height 120
+      antiAliasing TRUE
+    }
+    Pose {
+      translation 0.03 0.02 0.004
+      children [
+        Shape {
+          appearance Appearance {
+            material Material {
+              diffuseColor 0.1 0.35 1
+            }
+          }
+          geometry Sphere {
+            radius 0.005
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0.03 -0.02 0.004
+      children [
+        Shape {
+          appearance Appearance {
+            material Material {
+              diffuseColor 0.1 0.35 1
+            }
+          }
+          geometry Sphere {
+            radius 0.005
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0.015 0.031 0.004
+      children [
+        Shape {
+          appearance Appearance {
+            material Material {
+              diffuseColor 0.1 0.35 1
+            }
+          }
+          geometry Sphere {
+            radius 0.005
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0.015 -0.031 0.004
+      children [
+        Shape {
+          appearance Appearance {
+            material Material {
+              diffuseColor 0.1 0.35 1
+            }
+          }
+          geometry Sphere {
+            radius 0.005
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 0.032 0.004
+      children [
+        Shape {
+          appearance Appearance {
+            material Material {
+              diffuseColor 0.1 0.35 1
+            }
+          }
+          geometry Sphere {
+            radius 0.003
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0 -0.032 0.004
+      children [
+        Shape {
+          appearance Appearance {
+            material Material {
+              diffuseColor 0.1 0.35 1
+            }
+          }
+          geometry Sphere {
+            radius 0.003
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -0.027 0.022 0.004
+      children [
+        Shape {
+          appearance Appearance {
+            material Material {
+              diffuseColor 0.1 0.35 1
+            }
+          }
+          geometry Sphere {
+            radius 0.005
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -0.027 -0.022 0.004
+      children [
+        Shape {
+          appearance Appearance {
+            material Material {
+              diffuseColor 0.1 0.35 1
+            }
+          }
+          geometry Sphere {
+            radius 0.005
+          }
+        }
+      ]
+    }
+    DistanceSensor {
+      translation 0.031 0.02 0.004
+      rotation 0 0 1 0.22
+      name "proximity_left"
+      lookupTable [
+        0 1000 0
+        0.03 1000 0
+        0.08 650 0
+        0.12 300 0
+        0.16 0 0
+      ]
+      type "infra-red"
+      numberOfRays 5
+      aperture 0.22
+    }
+    DistanceSensor {
+      translation 0.031 -0.02 0.004
+      rotation 0 0 1 -0.22
+      name "proximity_right"
+      lookupTable [
+        0 1000 0
+        0.03 1000 0
+        0.08 650 0
+        0.12 300 0
+        0.16 0 0
+      ]
+      type "infra-red"
+      numberOfRays 5
+      aperture 0.22
+    }
+    DistanceSensor {
+      translation 0.015 0.031 0.004
+      rotation 0 0 1 0.78
+      name "proximity_left_front"
+      lookupTable [
+        0 1000 0
+        0.03 1000 0
+        0.08 650 0
+        0.12 300 0
+        0.16 0 0
+      ]
+      type "infra-red"
+      numberOfRays 3
+      aperture 0.2
+    }
+    DistanceSensor {
+      translation 0.015 -0.031 0.004
+      rotation 0 0 1 -0.78
+      name "proximity_right_front"
+      lookupTable [
+        0 1000 0
+        0.03 1000 0
+        0.08 650 0
+        0.12 300 0
+        0.16 0 0
+      ]
+      type "infra-red"
+      numberOfRays 3
+      aperture 0.2
+    }
+    DistanceSensor {
+      translation 0 0.035 0.004
+      rotation 0 0 1 1.57079632679
+      name "proximity_left_side"
+      lookupTable [
+        0 1000 0
+        0.03 1000 0
+        0.08 650 0
+        0.12 300 0
+        0.16 0 0
+      ]
+      type "infra-red"
+      numberOfRays 3
+      aperture 0.2
+    }
+    DistanceSensor {
+      translation 0 -0.035 0.004
+      rotation 0 0 1 -1.57079632679
+      name "proximity_right_side"
+      lookupTable [
+        0 1000 0
+        0.03 1000 0
+        0.08 650 0
+        0.12 300 0
+        0.16 0 0
+      ]
+      type "infra-red"
+      numberOfRays 3
+      aperture 0.2
+    }
+    DistanceSensor {
+      translation -0.028 0.022 0.004
+      rotation 0 0 1 2.6
+      name "proximity_rear_left"
+      lookupTable [
+        0 1000 0
+        0.03 1000 0
+        0.08 650 0
+        0.12 300 0
+        0.16 0 0
+      ]
+      type "infra-red"
+      numberOfRays 3
+      aperture 0.2
+    }
+    DistanceSensor {
+      translation -0.028 -0.022 0.004
+      rotation 0 0 1 -2.6
+      name "proximity_rear_right"
+      lookupTable [
+        0 1000 0
+        0.03 1000 0
+        0.08 650 0
+        0.12 300 0
+        0.16 0 0
+      ]
+      type "infra-red"
+      numberOfRays 3
+      aperture 0.2
+    }
+    # Physical photosensors added to the supplied robot. They are the ONLY
+    # directional sensors read by Primitive B. Existing DistanceSensors remain
+    # installed but are intentionally ignored by the controller.
+    Pose {
+      translation 0.015 0.031 0.020
+      rotation 0 0 1 0.78
+      children [
+        LightSensor {
+          name "light_left"
+          lookupTable [
+            0.00 0.00 0
+            0.05 0.05 0
+            0.10 0.10 0
+            0.20 0.20 0
+            0.40 0.40 0
+            0.70 0.70 0
+            1.00 1.00 0
+            2.00 1.00 0
+          ]
+        }
+      ]
+    }
+    Pose {
+      translation 0.015 -0.031 0.020
+      rotation 0 0 1 -0.78
+      children [
+        LightSensor {
+          name "light_right"
+          lookupTable [
+            0.00 0.00 0
+            0.05 0.05 0
+            0.10 0.10 0
+            0.20 0.20 0
+            0.40 0.40 0
+            0.70 0.70 0
+            1.00 1.00 0
+            2.00 1.00 0
+          ]
+        }
+      ]
+    }
+  ]
+  name "e-puck primitive b phototaxis"
+  contactMaterial "robot_body"
+  boundingObject Group {
+    children [
+      Cylinder {
+        height 0.05
+        radius 0.0355
+      }
+      Pose {
+        translation 0.024 0 -0.026
+        children [
+          Sphere {
+            radius 0.005
+          }
+        ]
+      }
+      Pose {
+        translation -0.024 0 -0.026
+        children [
+          Sphere {
+            radius 0.005
+          }
+        ]
+      }
+    ]
+  }
+  physics Physics {
+    density -1
+    mass 0.15
+    centerOfMass [
+      0 0 0
+    ]
+  }
+  controller "interacting_goals"
+}
+DEF PRECISION_LIGHT Solid {
+  translation 0.500000 0.280000 0.085000
+  rotation 0 0 1 3.14159265359
+  children [
+    DEF PRECISION_SPOT SpotLight {
+      location 0.030 0 0
+      direction 1 0 -0.08
+      color 1 0.82 0.18
+      intensity 8.500
+      ambientIntensity 0
+      attenuation 1 0.20 0.08
+      radius 5
+      beamWidth 0.045000
+      cutOffAngle 0.070000
+      castShadows FALSE
+    }
+    # Visual-only beam wedge. The supervisor updates its far width to match the
+    # optical cut-off angle. It has no light source and no bounding object.
+    Shape {
+      appearance Appearance {
+        material DEF PRECISION_BEAM_MAT Material {
+          ambientIntensity 0
+          diffuseColor 1 0.74 0.12
+          emissiveColor 0.82 0.47 0.018
+          transparency 0.74
+        }
+      }
+      geometry IndexedFaceSet {
+        coord DEF PRECISION_BEAM_COORD Coordinate {
+          point [
+            0.030 -0.016 0
+            0.030  0.016 0
+            0.600  0.050 0
+            0.600 -0.050 0
+          ]
+        }
+        coordIndex [ 0 1 2 3 -1 ]
+      }
+    }
+    Pose {
+      translation -0.020 0 0
+      rotation 0 1 0 1.57079632679
+      children [ Shape { appearance PBRAppearance { baseColor 0.015 0.017 0.021 roughness 0.38 metalness 0.28 } geometry Cylinder { height 0.065 radius 0.045 subdivision 32 } } ]
+    }
+    Pose {
+      translation 0.014 0 0
+      rotation 0 1 0 1.57079632679
+      children [ Shape { appearance PBRAppearance { baseColor 1 0.72 0.05 emissiveColor 1 0.70 0.04 roughness 0.12 metalness 0 } geometry Cylinder { height 0.010 radius 0.038 subdivision 32 } } ]
+    }
+  ]
+  name "natural-width jumping lure"
+}
+Robot { children [ ] name "AB obstacle precision lure supervisor" controller "light_stimulus" supervisor TRUE }

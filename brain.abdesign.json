@@ -1,0 +1,845 @@
+{
+  "schema": "artificial-brains/design/v1",
+  "name": "Interacting Goals",
+  "nodes": [
+    {
+      "name": "CAMERA",
+      "kind": "input",
+      "x": 40.0,
+      "y": 60.0,
+      "neurons": 64
+    },
+    {
+      "name": "CAMERA_RELAY",
+      "kind": "opu",
+      "x": 320.0,
+      "y": 60.0,
+      "rhythm": "high-gamma",
+      "tnorm": 10.0
+    },
+    {
+      "name": "CAMERA_T1",
+      "kind": "opu",
+      "x": 600.0,
+      "y": 60.0,
+      "rhythm": "theta",
+      "tnorm": 3.0
+    },
+    {
+      "name": "CAMERA_T2_LEFT",
+      "kind": "opu",
+      "x": 880.0,
+      "y": 60.0,
+      "rhythm": "theta",
+      "tnorm": 2.01
+    },
+    {
+      "name": "FORWARD_LEFT",
+      "kind": "opu",
+      "x": 1160.0,
+      "y": 60.0,
+      "rhythm": "beta",
+      "tnorm": 5.0
+    },
+    {
+      "name": "WHEEL_LEFT",
+      "kind": "output",
+      "x": 1440.0,
+      "y": 60.0,
+      "neurons": 1
+    },
+    {
+      "name": "CAMERA_T2_RIGHT",
+      "kind": "opu",
+      "x": 880.0,
+      "y": 220.0,
+      "rhythm": "theta",
+      "tnorm": 2.01
+    },
+    {
+      "name": "FORWARD_RIGHT",
+      "kind": "opu",
+      "x": 1160.0,
+      "y": 220.0,
+      "rhythm": "beta",
+      "tnorm": 5.0
+    },
+    {
+      "name": "WHEEL_RIGHT",
+      "kind": "output",
+      "x": 1440.0,
+      "y": 220.0,
+      "neurons": 1
+    },
+    {
+      "name": "COLLISION",
+      "kind": "input",
+      "x": 40.0,
+      "y": 1510.0,
+      "neurons": 1
+    },
+    {
+      "name": "COLLISION_RELAY",
+      "kind": "opu",
+      "x": 320.0,
+      "y": 1510.0,
+      "rhythm": "high-gamma",
+      "tnorm": 10.0
+    },
+    {
+      "name": "FRONT_RIGHT",
+      "kind": "input",
+      "x": 40.0,
+      "y": 430.0,
+      "neurons": 16
+    },
+    {
+      "name": "FRONT_RIGHT_RELAY",
+      "kind": "opu",
+      "x": 320.0,
+      "y": 430.0,
+      "rhythm": "high-gamma",
+      "tnorm": 10.0
+    },
+    {
+      "name": "FRONT_RIGHT_T1",
+      "kind": "opu",
+      "x": 600.0,
+      "y": 430.0,
+      "rhythm": "theta",
+      "tnorm": 3.0
+    },
+    {
+      "name": "FRONT_RIGHT_T2",
+      "kind": "opu",
+      "x": 880.0,
+      "y": 430.0,
+      "rhythm": "theta",
+      "tnorm": 2.01
+    },
+    {
+      "name": "A_TURN_LEFT",
+      "kind": "opu",
+      "x": 1160.0,
+      "y": 430.0,
+      "rhythm": "beta",
+      "tnorm": 5.0
+    },
+    {
+      "name": "FRONT_LEFT",
+      "kind": "input",
+      "x": 40.0,
+      "y": 590.0,
+      "neurons": 16
+    },
+    {
+      "name": "FRONT_LEFT_RELAY",
+      "kind": "opu",
+      "x": 320.0,
+      "y": 590.0,
+      "rhythm": "high-gamma",
+      "tnorm": 10.0
+    },
+    {
+      "name": "FRONT_LEFT_T1",
+      "kind": "opu",
+      "x": 600.0,
+      "y": 590.0,
+      "rhythm": "theta",
+      "tnorm": 3.0
+    },
+    {
+      "name": "FRONT_LEFT_T2",
+      "kind": "opu",
+      "x": 880.0,
+      "y": 590.0,
+      "rhythm": "theta",
+      "tnorm": 2.01
+    },
+    {
+      "name": "A_TURN_RIGHT",
+      "kind": "opu",
+      "x": 1160.0,
+      "y": 590.0,
+      "rhythm": "beta",
+      "tnorm": 5.0
+    },
+    {
+      "name": "SIDE_RIGHT",
+      "kind": "input",
+      "x": 40.0,
+      "y": 1170.0,
+      "neurons": 16
+    },
+    {
+      "name": "SIDE_RIGHT_RELAY",
+      "kind": "opu",
+      "x": 320.0,
+      "y": 1170.0,
+      "rhythm": "high-gamma",
+      "tnorm": 10.0
+    },
+    {
+      "name": "SIDE_RIGHT_T1",
+      "kind": "opu",
+      "x": 600.0,
+      "y": 1170.0,
+      "rhythm": "theta",
+      "tnorm": 3.0
+    },
+    {
+      "name": "SIDE_RIGHT_T2",
+      "kind": "opu",
+      "x": 880.0,
+      "y": 1170.0,
+      "rhythm": "theta",
+      "tnorm": 2.01
+    },
+    {
+      "name": "SIDE_TURN_LEFT",
+      "kind": "opu",
+      "x": 1160.0,
+      "y": 1170.0,
+      "rhythm": "beta",
+      "tnorm": 5.0
+    },
+    {
+      "name": "SIDE_LEFT",
+      "kind": "input",
+      "x": 40.0,
+      "y": 1330.0,
+      "neurons": 16
+    },
+    {
+      "name": "SIDE_LEFT_RELAY",
+      "kind": "opu",
+      "x": 320.0,
+      "y": 1330.0,
+      "rhythm": "high-gamma",
+      "tnorm": 10.0
+    },
+    {
+      "name": "SIDE_LEFT_T1",
+      "kind": "opu",
+      "x": 600.0,
+      "y": 1330.0,
+      "rhythm": "theta",
+      "tnorm": 3.0
+    },
+    {
+      "name": "SIDE_LEFT_T2",
+      "kind": "opu",
+      "x": 880.0,
+      "y": 1330.0,
+      "rhythm": "theta",
+      "tnorm": 2.01
+    },
+    {
+      "name": "SIDE_TURN_RIGHT",
+      "kind": "opu",
+      "x": 1160.0,
+      "y": 1330.0,
+      "rhythm": "beta",
+      "tnorm": 5.0
+    },
+    {
+      "name": "LIGHT_LEFT",
+      "kind": "input",
+      "x": 40.0,
+      "y": 800.0,
+      "neurons": 16
+    },
+    {
+      "name": "LIGHT_LEFT_RELAY",
+      "kind": "opu",
+      "x": 320.0,
+      "y": 800.0,
+      "rhythm": "high-gamma",
+      "tnorm": 10.0
+    },
+    {
+      "name": "LIGHT_LEFT_T1",
+      "kind": "opu",
+      "x": 600.0,
+      "y": 800.0,
+      "rhythm": "theta",
+      "tnorm": 3.0
+    },
+    {
+      "name": "LIGHT_LEFT_T2",
+      "kind": "opu",
+      "x": 880.0,
+      "y": 800.0,
+      "rhythm": "theta",
+      "tnorm": 2.01
+    },
+    {
+      "name": "LIGHT_VALUE_LEFT",
+      "kind": "opu",
+      "x": 1160.0,
+      "y": 800.0,
+      "rhythm": "beta",
+      "tnorm": 5.0
+    },
+    {
+      "name": "LIGHT_COMPARE_LEFT",
+      "kind": "opu",
+      "x": 1440.0,
+      "y": 800.0,
+      "rhythm": "beta",
+      "tnorm": 3.0
+    },
+    {
+      "name": "LIGHT_RIGHT",
+      "kind": "input",
+      "x": 40.0,
+      "y": 960.0,
+      "neurons": 16
+    },
+    {
+      "name": "LIGHT_RIGHT_RELAY",
+      "kind": "opu",
+      "x": 320.0,
+      "y": 960.0,
+      "rhythm": "high-gamma",
+      "tnorm": 10.0
+    },
+    {
+      "name": "LIGHT_RIGHT_T1",
+      "kind": "opu",
+      "x": 600.0,
+      "y": 960.0,
+      "rhythm": "theta",
+      "tnorm": 3.0
+    },
+    {
+      "name": "LIGHT_RIGHT_T2",
+      "kind": "opu",
+      "x": 880.0,
+      "y": 960.0,
+      "rhythm": "theta",
+      "tnorm": 2.01
+    },
+    {
+      "name": "LIGHT_VALUE_RIGHT",
+      "kind": "opu",
+      "x": 1160.0,
+      "y": 960.0,
+      "rhythm": "beta",
+      "tnorm": 5.0
+    },
+    {
+      "name": "LIGHT_COMPARE_RIGHT",
+      "kind": "opu",
+      "x": 1440.0,
+      "y": 960.0,
+      "rhythm": "beta",
+      "tnorm": 3.0
+    },
+    {
+      "name": "FRONT_ANY",
+      "kind": "opu",
+      "x": 1720.0,
+      "y": 430.0,
+      "rhythm": "beta",
+      "tnorm": 8.0
+    },
+    {
+      "name": "BLOCK_LIGHT_LEFT",
+      "kind": "opu",
+      "x": 2000.0,
+      "y": 740.0,
+      "rhythm": "beta",
+      "tnorm": 8.0
+    },
+    {
+      "name": "BLOCK_LIGHT_RIGHT",
+      "kind": "opu",
+      "x": 2000.0,
+      "y": 900.0,
+      "rhythm": "beta",
+      "tnorm": 8.0
+    },
+    {
+      "name": "SIDE_ANY",
+      "kind": "opu",
+      "x": 1720.0,
+      "y": 1100.0,
+      "rhythm": "beta",
+      "tnorm": 8.0
+    },
+    {
+      "name": "LIGHT_ANY",
+      "kind": "opu",
+      "x": 1720.0,
+      "y": 1370.0,
+      "rhythm": "beta",
+      "tnorm": 8.0
+    },
+    {
+      "name": "OBSTACLE_ANY",
+      "kind": "opu",
+      "x": 2000.0,
+      "y": 1130.0,
+      "rhythm": "beta",
+      "tnorm": 8.0
+    },
+    {
+      "name": "ANY_GOAL",
+      "kind": "opu",
+      "x": 2280.0,
+      "y": 1220.0,
+      "rhythm": "beta",
+      "tnorm": 8.0
+    },
+    {
+      "name": "SEARCH_RESET",
+      "kind": "opu",
+      "x": 2280.0,
+      "y": 220.0,
+      "rhythm": "beta",
+      "tnorm": 2.0
+    },
+    {
+      "name": "TRANSPORT_ACK",
+      "kind": "input",
+      "x": 40.0,
+      "y": 1730.0,
+      "neurons": 1
+    },
+    {
+      "name": "TRANSPORT_ACK_RELAY",
+      "kind": "opu",
+      "x": 320.0,
+      "y": 1730.0,
+      "rhythm": "high-gamma",
+      "tnorm": 10.0
+    },
+    {
+      "name": "TRANSPORT_ACK_OUT",
+      "kind": "output",
+      "x": 600.0,
+      "y": 1730.0,
+      "neurons": 1
+    },
+    {
+      "name": "TRANSPORT_ACK_CLEAR",
+      "kind": "opu",
+      "x": 880.0,
+      "y": 1730.0,
+      "rhythm": "high-gamma",
+      "tnorm": 10.0
+    }
+  ],
+  "connections": [
+    {
+      "from": "CAMERA",
+      "to": "CAMERA_RELAY",
+      "type": "exc"
+    },
+    {
+      "from": "CAMERA_RELAY",
+      "to": "CAMERA_T1",
+      "type": "exc"
+    },
+    {
+      "from": "CAMERA_T1",
+      "to": "CAMERA_T2_LEFT",
+      "type": "exc"
+    },
+    {
+      "from": "CAMERA_T2_LEFT",
+      "to": "FORWARD_LEFT",
+      "type": "exc"
+    },
+    {
+      "from": "FORWARD_LEFT",
+      "to": "WHEEL_LEFT",
+      "type": "exc"
+    },
+    {
+      "from": "CAMERA_T1",
+      "to": "CAMERA_T2_RIGHT",
+      "type": "exc"
+    },
+    {
+      "from": "CAMERA_T2_RIGHT",
+      "to": "FORWARD_RIGHT",
+      "type": "exc"
+    },
+    {
+      "from": "FORWARD_RIGHT",
+      "to": "WHEEL_RIGHT",
+      "type": "exc"
+    },
+    {
+      "from": "COLLISION",
+      "to": "COLLISION_RELAY",
+      "type": "exc"
+    },
+    {
+      "from": "FRONT_RIGHT",
+      "to": "FRONT_RIGHT_RELAY",
+      "type": "exc"
+    },
+    {
+      "from": "FRONT_RIGHT_RELAY",
+      "to": "FRONT_RIGHT_T1",
+      "type": "exc"
+    },
+    {
+      "from": "FRONT_RIGHT_T1",
+      "to": "FRONT_RIGHT_T2",
+      "type": "exc"
+    },
+    {
+      "from": "FRONT_RIGHT_T2",
+      "to": "A_TURN_LEFT",
+      "type": "exc"
+    },
+    {
+      "from": "FRONT_LEFT",
+      "to": "FRONT_LEFT_RELAY",
+      "type": "exc"
+    },
+    {
+      "from": "FRONT_LEFT_RELAY",
+      "to": "FRONT_LEFT_T1",
+      "type": "exc"
+    },
+    {
+      "from": "FRONT_LEFT_T1",
+      "to": "FRONT_LEFT_T2",
+      "type": "exc"
+    },
+    {
+      "from": "FRONT_LEFT_T2",
+      "to": "A_TURN_RIGHT",
+      "type": "exc"
+    },
+    {
+      "from": "A_TURN_LEFT",
+      "to": "A_TURN_RIGHT",
+      "type": "inh"
+    },
+    {
+      "from": "A_TURN_RIGHT",
+      "to": "A_TURN_LEFT",
+      "type": "inh"
+    },
+    {
+      "from": "SIDE_RIGHT",
+      "to": "SIDE_RIGHT_RELAY",
+      "type": "exc"
+    },
+    {
+      "from": "SIDE_RIGHT_RELAY",
+      "to": "SIDE_RIGHT_T1",
+      "type": "exc"
+    },
+    {
+      "from": "SIDE_RIGHT_T1",
+      "to": "SIDE_RIGHT_T2",
+      "type": "exc"
+    },
+    {
+      "from": "SIDE_RIGHT_T2",
+      "to": "SIDE_TURN_LEFT",
+      "type": "exc"
+    },
+    {
+      "from": "SIDE_LEFT",
+      "to": "SIDE_LEFT_RELAY",
+      "type": "exc"
+    },
+    {
+      "from": "SIDE_LEFT_RELAY",
+      "to": "SIDE_LEFT_T1",
+      "type": "exc"
+    },
+    {
+      "from": "SIDE_LEFT_T1",
+      "to": "SIDE_LEFT_T2",
+      "type": "exc"
+    },
+    {
+      "from": "SIDE_LEFT_T2",
+      "to": "SIDE_TURN_RIGHT",
+      "type": "exc"
+    },
+    {
+      "from": "SIDE_TURN_LEFT",
+      "to": "SIDE_TURN_RIGHT",
+      "type": "inh"
+    },
+    {
+      "from": "SIDE_TURN_RIGHT",
+      "to": "SIDE_TURN_LEFT",
+      "type": "inh"
+    },
+    {
+      "from": "A_TURN_LEFT",
+      "to": "FORWARD_LEFT",
+      "type": "inh"
+    },
+    {
+      "from": "A_TURN_LEFT",
+      "to": "WHEEL_LEFT",
+      "type": "inh"
+    },
+    {
+      "from": "A_TURN_RIGHT",
+      "to": "FORWARD_RIGHT",
+      "type": "inh"
+    },
+    {
+      "from": "A_TURN_RIGHT",
+      "to": "WHEEL_RIGHT",
+      "type": "inh"
+    },
+    {
+      "from": "LIGHT_LEFT",
+      "to": "LIGHT_LEFT_RELAY",
+      "type": "exc"
+    },
+    {
+      "from": "LIGHT_LEFT_RELAY",
+      "to": "LIGHT_LEFT_T1",
+      "type": "exc"
+    },
+    {
+      "from": "LIGHT_LEFT_T1",
+      "to": "LIGHT_LEFT_T2",
+      "type": "exc"
+    },
+    {
+      "from": "LIGHT_LEFT_T2",
+      "to": "LIGHT_VALUE_LEFT",
+      "type": "exc"
+    },
+    {
+      "from": "LIGHT_RIGHT",
+      "to": "LIGHT_RIGHT_RELAY",
+      "type": "exc"
+    },
+    {
+      "from": "LIGHT_RIGHT_RELAY",
+      "to": "LIGHT_RIGHT_T1",
+      "type": "exc"
+    },
+    {
+      "from": "LIGHT_RIGHT_T1",
+      "to": "LIGHT_RIGHT_T2",
+      "type": "exc"
+    },
+    {
+      "from": "LIGHT_RIGHT_T2",
+      "to": "LIGHT_VALUE_RIGHT",
+      "type": "exc"
+    },
+    {
+      "from": "LIGHT_VALUE_LEFT",
+      "to": "LIGHT_COMPARE_LEFT",
+      "type": "exc",
+      "role": "operand",
+      "units": 1.0
+    },
+    {
+      "from": "LIGHT_VALUE_RIGHT",
+      "to": "LIGHT_COMPARE_LEFT",
+      "type": "inh",
+      "role": "operand",
+      "units": 1.0
+    },
+    {
+      "from": "LIGHT_COMPARE_LEFT",
+      "to": "FORWARD_LEFT",
+      "type": "inh"
+    },
+    {
+      "from": "LIGHT_COMPARE_LEFT",
+      "to": "WHEEL_LEFT",
+      "type": "inh"
+    },
+    {
+      "from": "LIGHT_VALUE_RIGHT",
+      "to": "LIGHT_COMPARE_RIGHT",
+      "type": "exc",
+      "role": "operand",
+      "units": 1.0
+    },
+    {
+      "from": "LIGHT_VALUE_LEFT",
+      "to": "LIGHT_COMPARE_RIGHT",
+      "type": "inh",
+      "role": "operand",
+      "units": 1.0
+    },
+    {
+      "from": "LIGHT_COMPARE_RIGHT",
+      "to": "FORWARD_RIGHT",
+      "type": "inh"
+    },
+    {
+      "from": "LIGHT_COMPARE_RIGHT",
+      "to": "WHEEL_RIGHT",
+      "type": "inh"
+    },
+    {
+      "from": "A_TURN_LEFT",
+      "to": "FRONT_ANY",
+      "type": "exc",
+      "role": "operand",
+      "units": 1.0
+    },
+    {
+      "from": "A_TURN_RIGHT",
+      "to": "FRONT_ANY",
+      "type": "exc",
+      "role": "operand",
+      "units": 1.0
+    },
+    {
+      "from": "FRONT_ANY",
+      "to": "BLOCK_LIGHT_LEFT",
+      "type": "exc",
+      "role": "operand",
+      "units": 1.0
+    },
+    {
+      "from": "SIDE_TURN_RIGHT",
+      "to": "BLOCK_LIGHT_LEFT",
+      "type": "exc",
+      "role": "operand",
+      "units": 1.0
+    },
+    {
+      "from": "FRONT_ANY",
+      "to": "BLOCK_LIGHT_RIGHT",
+      "type": "exc",
+      "role": "operand",
+      "units": 1.0
+    },
+    {
+      "from": "SIDE_TURN_LEFT",
+      "to": "BLOCK_LIGHT_RIGHT",
+      "type": "exc",
+      "role": "operand",
+      "units": 1.0
+    },
+    {
+      "from": "BLOCK_LIGHT_LEFT",
+      "to": "LIGHT_LEFT_T2",
+      "type": "inh"
+    },
+    {
+      "from": "BLOCK_LIGHT_RIGHT",
+      "to": "LIGHT_RIGHT_T2",
+      "type": "inh"
+    },
+    {
+      "from": "SIDE_TURN_LEFT",
+      "to": "SIDE_ANY",
+      "type": "exc",
+      "role": "operand",
+      "units": 1.0
+    },
+    {
+      "from": "SIDE_TURN_RIGHT",
+      "to": "SIDE_ANY",
+      "type": "exc",
+      "role": "operand",
+      "units": 1.0
+    },
+    {
+      "from": "LIGHT_VALUE_LEFT",
+      "to": "LIGHT_ANY",
+      "type": "exc",
+      "role": "operand",
+      "units": 1.0
+    },
+    {
+      "from": "LIGHT_VALUE_RIGHT",
+      "to": "LIGHT_ANY",
+      "type": "exc",
+      "role": "operand",
+      "units": 1.0
+    },
+    {
+      "from": "FRONT_ANY",
+      "to": "OBSTACLE_ANY",
+      "type": "exc",
+      "role": "operand",
+      "units": 1.0
+    },
+    {
+      "from": "SIDE_ANY",
+      "to": "OBSTACLE_ANY",
+      "type": "exc",
+      "role": "operand",
+      "units": 1.0
+    },
+    {
+      "from": "OBSTACLE_ANY",
+      "to": "ANY_GOAL",
+      "type": "exc",
+      "role": "operand",
+      "units": 1.0
+    },
+    {
+      "from": "LIGHT_ANY",
+      "to": "ANY_GOAL",
+      "type": "exc",
+      "role": "operand",
+      "units": 1.0
+    },
+    {
+      "from": "FORWARD_RIGHT",
+      "to": "SEARCH_RESET",
+      "type": "exc"
+    },
+    {
+      "from": "ANY_GOAL",
+      "to": "SEARCH_RESET",
+      "type": "inh",
+      "strength": 2.5
+    },
+    {
+      "from": "SEARCH_RESET",
+      "to": "CAMERA_T2_RIGHT",
+      "type": "inh",
+      "role": "feedback"
+    },
+    {
+      "from": "SEARCH_RESET",
+      "to": "WHEEL_RIGHT",
+      "type": "inh"
+    },
+    {
+      "from": "TRANSPORT_ACK",
+      "to": "TRANSPORT_ACK_RELAY",
+      "type": "exc"
+    },
+    {
+      "from": "TRANSPORT_ACK_RELAY",
+      "to": "TRANSPORT_ACK_OUT",
+      "type": "exc"
+    },
+    {
+      "from": "TRANSPORT_ACK_OUT",
+      "to": "TRANSPORT_ACK_CLEAR",
+      "type": "exc"
+    },
+    {
+      "from": "TRANSPORT_ACK_CLEAR",
+      "to": "TRANSPORT_ACK_OUT",
+      "type": "inh"
+    },
+    {
+      "from": "TRANSPORT_ACK_CLEAR",
+      "to": "TRANSPORT_ACK_CLEAR",
+      "type": "inh",
+      "role": "feedback"
+    }
+  ]
+}
